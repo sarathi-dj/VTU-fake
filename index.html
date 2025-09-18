@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VTU Result 2025</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+        }
+        img {
+            width: 90%;
+        }
+        #captchaDisplay {
+            position: absolute;
+            top: 60.2%;
+            left: 46%;
+            font-weight: bold;
+            font-size: 18px;
+            letter-spacing: 5px;
+            background-color: #ddd;
+            padding: 25px 34.95px;
+            user-select: none;
+            cursor: pointer;
+            box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+        }
+        #submitBtn {
+            position: absolute;
+            top: 76.8%;
+            left: 24.9%;
+            width: 247px;
+            height: 35px;
+            cursor: pointer;
+            font-weight: bold;
+            background-color: #8fbc8f;
+            color: black;
+            border: none;
+            border-radius: 5%;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+        }
+        #submitBtn:hover {
+            background-color: #7cad7c;
+        }
+        #cancelBtn {
+            position: absolute;
+            top: 76.8%;
+            left: calc(26.7% + 257px);
+            width: 247px;
+            height: 35px;
+            cursor: pointer;
+            font-weight: bold;
+            background-color: #F77F65;
+            color: white;
+            border: none;
+            border-radius: 5%;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+        }
+        #cancelBtn:hover {
+            background-color: #e46c53;
+        }
+    </style>
+</head>
+<body>
+    <div style="position: relative; display: inline-block; margin-left: 13%;">
+        <a href="#">
+            <img src="ss.png" alt="" style="display: block;">
+        </a>
+        <img src="sss.png" alt="vtu" style="box-shadow: 8px 8px 15px rgba(0,0,0,0.5); display: block;">
+
+        <input type="text" id="usn" name="usn" placeholder="ENTER USN" 
+         style="position: absolute; top: 52%; left: 24.9%; width: 522px; height: 30px;">
+
+        <input type="text" id="cap" name="cap" placeholder="Enter Captcha Code" 
+         style="position: absolute; top: 64%; left: 24.9%; width: 242px; height: 30px;">
+
+        <div id="captchaDisplay" title="Click to refresh CAPTCHA"></div>
+
+        <button id="submitBtn" onclick="submitForm()">ಸಲ್ಲಿಸಿ / SUBMIT</button>
+        <button id="cancelBtn" onclick="cancelForm()">ರದ್ದುಮಾಡಿ / CANCEL</button>
+    </div>
+
+    <script>
+        const captchaDisplay = document.getElementById('captchaDisplay');
+        const captchaInput = document.getElementById('cap');
+
+        function generateCaptcha() {
+            const charsArray = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+            let captcha = '';
+            for (let i = 0; i < 6; i++) {
+                const index = Math.floor(Math.random() * charsArray.length);
+                captcha += charsArray[index];
+            }
+            captchaDisplay.textContent = captcha;
+        }
+
+        captchaDisplay.addEventListener('click', generateCaptcha);
+        window.onload = generateCaptcha;
+
+        function submitForm() {
+    const usnValue = document.getElementById('usn').value.trim();
+    if (captchaInput.value === captchaDisplay.textContent) {
+        if (usnValue === '4VM23EE013') {
+            window.location.href = 'one.html';
+        } else if (usnValue === '4VM23EE027') {
+            window.location.href = 'two.html';
+        } else {
+            alert('Invalid USN. Please enter the correct USN.');
+            document.getElementById('usn').focus();
+        }
+    } else {
+        alert('Captcha mismatched. Please try again.');
+        generateCaptcha();
+        captchaInput.value = '';
+        captchaInput.focus();
+    }
+}
+
+
+        function cancelForm() {
+            document.getElementById('usn').value = '';
+            document.getElementById('cap').value = '';
+        }
+    </script>
+</body>
+</html>
